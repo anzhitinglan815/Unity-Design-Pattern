@@ -88,3 +88,6 @@ namespace FactoryMethodStructure
         }
     }
 }
+
+
+// 工厂方法模式：工厂A生成产品A，工厂B生成产品B

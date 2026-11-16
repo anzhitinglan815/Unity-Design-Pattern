@@ -93,3 +93,7 @@ class ConcretePrototype2 : Prototype
         return (Prototype)this.MemberwiseClone();
     }
 }
+
+
+// 原型模式一般要实现 Clone接口
+

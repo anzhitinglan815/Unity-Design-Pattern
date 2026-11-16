@@ -183,3 +183,9 @@ namespace FactoryMethodPatternExample2
     }
 
 }
+
+
+// 敌机是抽象产品，
+// UFO、火箭、Boss 是具体产品
+// 简单工厂，敌机工厂，根据传入的敌机类型，new 出对应的具体敌机，客户端只面向抽象产品
+
