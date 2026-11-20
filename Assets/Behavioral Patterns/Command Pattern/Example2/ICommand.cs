@@ -1,5 +1,6 @@
 ﻿//-------------------------------------------------------------------------------------
 //	ICommand.cs
+//	命令接口：所有具体命令的共同契约
 //-------------------------------------------------------------------------------------
 
 using UnityEngine;
@@ -7,9 +8,9 @@ using System.Collections;
 
 
 // commands:
-// command interface:
+// 命令接口：调用者只依赖这个接口，不关心具体是什么设备操作
 public interface ICommand
 {
-    void Execute();
-    void Undo();
+    void Execute();   // 执行命令
+    void Undo();      // 撤销命令，恢复到执行前的状态
 }

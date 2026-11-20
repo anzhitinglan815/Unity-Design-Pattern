@@ -1,5 +1,6 @@
 ﻿//-------------------------------------------------------------------------------------
 //	CommandPatternExample4.cs
+//	命令模式示例 4：调用者收集多条命令后统一执行
 //-------------------------------------------------------------------------------------
 
 using UnityEngine;
@@ -8,6 +9,9 @@ using System.Collections.Generic;
 
 namespace CommandPatternExample4
 {
+    /// <summary>
+    /// 客户端：创建命令并交由调用者管理，最后一次性执行队列中的命令
+    /// </summary>
     public class CommandPatternExample4 : MonoBehaviour
     {
         void Start()
@@ -30,6 +34,7 @@ namespace CommandPatternExample4
 
     /// <summary>
     /// 命令抽象类
+    /// 只声明 Execute，具体命令自行决定如何调用接收者
     /// </summary>
     public abstract class Command
     {
@@ -38,11 +43,12 @@ namespace CommandPatternExample4
 
     /// <summary>
     /// 实际命令1-绑定命令和receiver
+    /// 携带字符串参数，执行时交给 Receiver1
     /// </summary>
     public class ConcreteCommand1 : Command
     {
-        Receiver1 m_Receiver = null;
-        string m_Command = "";
+        Receiver1 m_Receiver = null;    // 接收者
+        string m_Command = "";          // 命令参数
 
         public ConcreteCommand1(Receiver1 Receiver, string param)
         {
@@ -58,6 +64,7 @@ namespace CommandPatternExample4
 
     /// <summary>
     /// 实际命令2-绑定命令和receiver
+    /// 携带整数参数，执行时交给 Receiver2
     /// </summary>
     public class ConcreteCommand2 : Command
     {
@@ -103,6 +110,7 @@ namespace CommandPatternExample4
 
     /// <summary>
     /// 命令管理者
+    /// 调用者：用列表保存命令，支持先入队、后统一执行
     /// </summary>
     public class Invoker
     {
@@ -116,13 +124,14 @@ namespace CommandPatternExample4
 
         /// <summary>
         /// 执行命令
+        /// 按加入顺序依次执行，执行完毕后清空队列
         /// </summary>
         public void ExecuteCommand()
         {
             // 执行
             foreach (Command theCommand in m_Commands)
                 theCommand.Execute();
-            // 清空 
+            // 清空
             m_Commands.Clear();
         }
     }
